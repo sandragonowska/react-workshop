@@ -29,6 +29,30 @@ After that, adapt your component(s) to use the Redux state handling. The *hooks*
 `useDispatch` and `useSelector` from the package `react-redux` will help you
 with that.
 
+### Hints
+
+To get your *integration tests* running again, you also need to provide a Redux
+store in your test setup. That basically looks the same as it does in the real
+app.
+
+You can see an example for this in `renderWithStore` below. You can either use
+it directly in each test, or put it into a `beforeEach` hook.
+
+```jsx
+import React from 'react'
+import { Provider } from 'react-redux'
+import { render, RenderResult } from '@testing-library/react'
+
+import { store } from './App' // result of configureStore()
+import TestedComponent from './TestedComponent'
+
+const renderWithStore = (): RenderResult => render(
+    <Provider store={store}>
+        <TestedComponent someProp={someStuff} />
+    </Provider>
+)
+```
+
 ## *BONUS ASSIGNMENT*
 
 Add an indicator that shows the quality of temperature and humidity.
