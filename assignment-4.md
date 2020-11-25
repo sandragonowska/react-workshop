@@ -25,3 +25,45 @@ assert the state matches what you'd expect it after an action has been reduced.
 
 **You're not supposed to integrate this state management solution into your
 current React application (yet)!**
+
+## Hints
+
+Everything you learned in the testing chapter you can use in the tests for
+Redux.
+
+### Testing Actions
+
+```typescript
+describe('actions tests', () => {
+    test('returns an action with the given id', () => {
+        const id = 23;
+
+        const action = createSetFavAction(id);
+
+        expect(action).toEqual({
+            type: SET_FAVORITE,
+            payload: id,
+        });
+    });
+});
+```
+
+### Testing Reducers
+
+```typescript
+describe('reducers tests', () => {
+    test('adds the session id to the favorites list', () => {
+        const initialState: FavoriteState = [23, 1337];
+        const idToAdd = 42;
+        const action: SetFavoriteAction = createSetFavAction(idToAdd);
+
+        const newState: FavoriteState = reducer(initialState, action);
+
+        const expectedState = [23, 1337, 42];
+        expect(newState).toEqual(expectedState);
+    });
+});
+```
+
+Simply place the test file at the same level as your redux code, Jest will
+automatically pick up the test files and execute them.
