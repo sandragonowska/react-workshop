@@ -27,3 +27,17 @@ available to the React app via a `<Provider>`.
 
 After that, adapt your component(s) to use the Redux state handling. The *hooks*
 `useDispatch` and `useSelector` from the package `react-redux` will help you with that.
+
+## *BONUS ASSIGNMENT*
+
+Add an indicator which identifies the quality of temperature and humidity.
+The quality should be indicated by a smiley face and an appropriate label:
+
+* humidity
+  * humidity < 40%: sad, "dry"
+  * 40% < humidity < 60%: happy
+  * humidity <= 60%: sad, "moist"
+* temperature
+  * temperature < 17°C: sad, "cold"
+  * 17°C < temperature <= 25°C: happy
+  * 25°C < teperature: sad, "hot"
