@@ -39,7 +39,7 @@ This should be represented by a smiley face and an appropriate label, as shown b
 
 | Range                       | Representation
 |-----------------------------|----------------
-| humidity < 40%              | 😟 *dry*
+| humidity ≤ 40%              | 😟 *dry*
 | 40% < humidity < 60%        | 😀 *normal*
 | humidity ≥ 60%              | 😟 *moist*
 
@@ -47,6 +47,6 @@ This should be represented by a smiley face and an appropriate label, as shown b
 
 | Range                       | Representation
 |-----------------------------|----------------
-| temperature < 17° C         | 😟 *cold*
+| temperature ≤ 17° C         | 😟 *cold*
 | 17° C < temperature < 25° C | 😀 *normal*
 | temperature ≥ 25° C         | 😟 *hot*
