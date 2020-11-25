@@ -11,7 +11,7 @@ Use the `createSlice` API to create all those action creators, initial state,
 and the reducer at once.
 
 Don't forget to add a `default export` of the slice's reducer, and named
-`export`s for the actions and selectors (if you have any).
+`export`s for the actions and selectors.
 
 The functionality should not change. Use your existing unit tests to verify
 this. You probably will need to adapt the test code a bit, but that should be
@@ -26,18 +26,27 @@ Use *React Toolkit's* `configureStore` to set up the Redux store, and make it
 available to the React app via a `<Provider>`.
 
 After that, adapt your component(s) to use the Redux state handling. The *hooks*
-`useDispatch` and `useSelector` from the package `react-redux` will help you with that.
+`useDispatch` and `useSelector` from the package `react-redux` will help you
+with that.
 
 ## *BONUS ASSIGNMENT*
 
-Add an indicator which identifies the quality of temperature and humidity.
-The quality should be indicated by a smiley face and an appropriate label:
+Add an indicator that shows the quality of temperature and humidity.
 
-* humidity
-  * humidity < 40%: sad, "dry"
-  * 40% < humidity < 60%: happy
-  * humidity <= 60%: sad, "moist"
-* temperature
-  * temperature < 17°C: sad, "cold"
-  * 17°C < temperature <= 25°C: happy
-  * 25°C < teperature: sad, "hot"
+This should be represented by a smiley face and an appropriate label, as shown below.
+
+### Humidity
+
+| Range                       | Representation
+|-----------------------------|----------------
+| humidity < 40%              | 😟 *dry*
+| 40% < humidity < 60%        | 😀 *normal*
+| humidity ≥ 60%              | 😟 *moist*
+
+### Temperature
+
+| Range                       | Representation
+|-----------------------------|----------------
+| temperature < 17° C         | 😟 *cold*
+| 17° C < temperature < 25° C | 😀 *normal*
+| temperature ≥ 25° C         | 😟 *hot*
