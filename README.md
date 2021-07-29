@@ -35,16 +35,14 @@ The values should be changing over time.
 
 Use `npm test` to run the tests.
 
-By default only tests for changed files are run. This is very convenient for
-development, but for a initial check press `a` to trigger a full test run.
-
 This should show you exactly one succeeding test case:
 
 ```text
 ✓ Climate app shows the current temperature (example usage of test sensor)
 ```
 
-You can then quit the test runner with `q` for now.
+There is also a watch mode that can be started with `npm run test:watch`.
+Use `<Ctrl>+<c>` to stop the watch mode.
 
 ---
 
