@@ -1,24 +1,11 @@
-import { cleanup, render } from '@testing-library/react';
 import React from 'react'
+import { render } from '@testing-library/react';
+import * as chai from 'chai';
 
 import { testSensor } from '../lib/Sensor';
 
 import Climate from './Climate';
-
-// -----------------------------------------------------------------------------
-// FIXME: this belongs in some global test setup file
-import 'mocha';
-import * as chai from 'chai';
-import chaiDom from 'chai-dom';
-chai.use(chaiDom);
-
 const expect = chai.expect;
-
-// Clean up the DOM after each test case, see:
-// https://testing-library.com/docs/react-testing-library/api#cleanup
-// Should actually be done automatically, but somehow isn't…
-afterEach(() => cleanup());
-// -----------------------------------------------------------------------------
 
 it('Climate app shows the current temperature (example usage of test sensor)', async () => {
     // It's important to use `testSensor` for the tests, instead of the "real"

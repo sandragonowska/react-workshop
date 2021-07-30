@@ -34,8 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "mocha --require ts-node/register --require global-jsdom/register src/**/*.test.{ts,tsx}",
-    "test:watch": "mocha --require ts-node/register --require global-jsdom/register src/**/*.test.{ts,tsx} --watch --extension ts,tsx"
+    "test": "mocha src/**/*.test.{ts,tsx}",
+    "test:watch": "mocha --watch src/**/*.test.{ts,tsx}"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,5 +51,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "mocha": {
+      "file": [
+        "src/test/fixture.ts"
+      ],
+      "extension": "ts,tsx",
+      "require": [
+        "ts-node/register",
+        "global-jsdom/register"
+      ]
   }
 }
