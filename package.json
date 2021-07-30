@@ -57,7 +57,8 @@
       "extension": "ts,tsx",
       "require": [
         "ts-node/register",
-        "global-jsdom/register"
+        "global-jsdom/register",
+        "chai/register-expect"
       ]
   }
 }

@@ -18,7 +18,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "typeRoots": [
+      "node_modules/@types",
+      "./typings"
+    ],
+    "types": [
+      "mocha",
+      "chai",
+      "node",
+      "global"
+    ]
   },
   "ts-node": {
     "compilerOptions": {

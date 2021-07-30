@@ -38,7 +38,8 @@ Use `npm test` to run the tests.
 This should show you exactly one succeeding test case:
 
 ```text
-✓ Climate app shows the current temperature (example usage of test sensor)
+  Climate component
+    ✔ shows the current temperature
 ```
 
 There is also a watch mode that can be started with `npm run test:watch`.
