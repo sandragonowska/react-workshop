@@ -51,14 +51,14 @@
     ]
   },
   "mocha": {
-      "file": [
-        "src/test/fixture.ts"
-      ],
-      "extension": "ts,tsx",
-      "require": [
-        "ts-node/register",
-        "global-jsdom/register",
-        "chai/register-expect"
-      ]
+    "file": [
+      "src/test/fixture.ts"
+    ],
+    "extension": "ts,tsx",
+    "require": [
+      "ts-node/register",
+      "global-jsdom/register",
+      "chai/register-expect"
+    ]
   }
 }
