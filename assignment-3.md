@@ -2,28 +2,26 @@
 
 ## 3.1 Getting Started
 
-Start the test runner with `npm test`.
-
-By default only tests for changed files are run. So in case you have been making
-Git commits, and currently have no uncommitted changes in your working
-directory, press `a` to trigger a test run.
+Start the test runner in watch mode with `npm run test:watch`.
 
 The initial test in `Climate.test.tsx` probably does not run green anymore,
 because it was testing the app in its starting state, but we have changed the
 app quite a bit in the last exercises.
 
-We'll take care for that soon, but for now disable that test with Jest's `skip`
+We'll take care for that soon, but for now disable that test with Mocha's `skip`
 feature. Change this:
 
 ```typescript
-test('Climate app shows the current temperature…', …)
+it('shows the current temperature', …)
 ```
 
 to this:
 
 ```typescript
-test.skip('Climate app shows the current temperature…', …)
+it.skip('shows the current temperature', …)
 ```
+
+Mocha will list the test case as *pending* then, and no longer run it.
 
 ## 3.2 Header
 
@@ -32,8 +30,8 @@ have implemented in the first assignment. You have probably put that into a
 file called `Header.tsx`. Create a new file `Header.test.tsx` for the tests.
 
 Try to `render` the component with different text values that you pass in as a
-prop. Use `getByRole` and `toHaveTextContent` to find the rendered header in the
-DOM and check its text content.
+prop. Use `getByRole` and `to.have.text` or `to.contain.text` to find the
+rendered header in the DOM and check its text content.
 
 ### Hints
 
