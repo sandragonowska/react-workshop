@@ -15,7 +15,7 @@ describe('Climate component', () => {
         const { findByText } = render(<Climate sensor={testSensor} />);
 
         // No value from the sensor yet, so "-" is shown.
-        expect(await findByText(/temperature:/i)).to.have.text('Temperature: -');
+        expect(await findByText(/temperature:/i)).to.contain.text('-');
 
         // We let the sensor emit a temperature value of 21:
         testSensor.emit('temperature', 21);
@@ -24,12 +24,12 @@ describe('Climate component', () => {
         // We need to use `findBy…` and `await` that, because the event loop needs
         // to run first, so that our emitted event from above actually reaches the
         // component.
-        expect(await findByText(/temperature:/i)).to.have.text('Temperature: 21');
+        expect(await findByText(/temperature:/i)).to.contain.text('21');
 
         // Same thing again with a different temperature value, so that we can be
         // sure that the shown values are always up to date with the latest emitted
         // value from the sensor.
         testSensor.emit('temperature', 22);
-        expect(await findByText(/temperature:/i)).to.have.text('Temperature: 22');
+        expect(await findByText(/temperature:/i)).to.contain.text('22');
     });
 });
