@@ -1,4 +1,4 @@
-# Assignment 6: Side Effects with Redux Thunk
+# Assignment 5: Side Effects with Redux Thunk
 
 In the Redux world a reducer is set up in a way that does not allow for side
 effects. In this assignment you have the task to create a *reload* button that
@@ -7,9 +7,19 @@ update the current temperature and humidity.
 
 These getters are asynchronous, which means that they return a promise that will
 resolve eventually. Make sure to also check for failure cases, as the sensor
-getters may fail to resolve sometimes.
+getters may fail to resolve sometimes. This closely resembles HTTP API calls
+that you will encounter in most real-world apps.
 
-Use *Redux Thunk* for this task.
+A few facts about the sensor:
+
+* It has an error rate of 20%.
+* The asynchronous getters take between 100 ms and 2 sec. to complete.
+* Yes, it is a very crappy sensor. We were over budget, you have to deal with
+  it.
+
+Use
+[*Redux Thunk*](https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware)
+ for this task.
 
 ## Acceptance Criteria
 
@@ -26,7 +36,14 @@ Use *Redux Thunk* for this task.
 ## Hints
 
 It will be necessary to upgrade your application state together with some new
-actions/reducers/selectors.
+actions/reducers/selectors. Remember that a *thunk* usually dispatches various
+actions. To do that, use the `(dispatch)` parameter of the *thunk* function.
+
+It may be confusing that the regular sensor events still update the values in
+the app. Feel free to comment out the event handlers (`sensor.on(…)`).
+
+The sensor only fails every now and then, so try your reload button often enough
+to be sure that your error handling works as expected.
 
 ---
 
@@ -55,3 +72,6 @@ You can than import this type, and define a *thunk* function like this:
 ```typescript
 export function createSomeCoolThunk(): AppThunk { /* … */ }
 ```
+
+Place your *thunk* in the same module as the *climate slice*. This makes it easy
+to access the existing climate actions.
