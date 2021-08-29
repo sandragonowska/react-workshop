@@ -1,76 +1,57 @@
-# Assignment 5: Redux Toolkit
+# Assignment 6: Side Effects with Redux Thunk
 
-In this assignment, we'll add the connection between React and Redux.
+In the Redux world a reducer is set up in a way that does not allow for side
+effects. In this assignment you have the task to create a *reload* button that
+will query the sensor's `getTemperature` and `getHumidity` getters in order to
+update the current temperature and humidity.
 
-## 5.1 Refactor to Redux Toolkit
+These getters are asynchronous, which means that they return a promise that will
+resolve eventually. Make sure to also check for failure cases, as the sensor
+getters may fail to resolve sometimes.
 
-You may have noticed that you had to write quite some boilerplate code in
-the previous assignment. We'll clean that up now by introducing *Redux Toolkit*!
+Use *Redux Thunk* for this task.
 
-Use the `createSlice` API to create all those action creators, initial state,
-and the reducer at once.
+## Acceptance Criteria
 
-Don't forget to add a `default export` of the slice's reducer, and named
-`export`s for the actions and selectors.
+* A reload button is shown.
+* A click on the reload button triggers an update of the current temperature and
+  humidity values via the getters.
+* While the requested values are loaded a "Loading…" message is shown on the
+  button in the meantime.
+* While the data is loading, the button is disabled.
+* When one of the getter fails (the promise rejects), an appropriate message is
+  displayed somewhere.
+* Any previous error message is cleared when pressing the reload button again.
 
-The functionality should not change. Use your existing unit tests to verify
-this. You probably will need to adapt the test code a bit, but that should be
-limited to the naming of the exports. The test logic will stay the same.
+## Hints
 
-## 5.2 Connect React and Redux
+It will be necessary to upgrade your application state together with some new
+actions/reducers/selectors.
 
-To actually make use of the fine Redux state handling logic, we need to connect
-it to our React app.
+---
 
-Use *React Toolkit's* `configureStore` to set up the Redux store, and make it
-available to the React app via a `<Provider>`.
+A *thunk* function requires a return type `AppThunk`, which is specific to your
+Redux store. It's helpful to define this type in the module where you set up
+your store (`store.ts`).
 
-After that, adapt your component(s) to use the Redux state handling. The *hooks*
-`useDispatch` and `useSelector` from the package `react-redux` will help you
-with that.
+```typescript
+export const createStore = () => configureStore({
+    reducer: { /* your reducers */ }
+});
 
-### Hints
+export const store = createStore();
 
-To get your *integration tests* running again, you also need to provide a Redux
-store in your test setup. That basically looks the same as it does in the real
-app.
-
-You can see an example for this in `renderWithStore` below. You can either use
-it directly in each test, or put it into a `beforeEach` hook.
-
-```jsx
-import React from 'react'
-import { Provider } from 'react-redux'
-import { render, RenderResult } from '@testing-library/react'
-
-import { store } from './App' // result of configureStore()
-import TestedComponent from './TestedComponent'
-
-const renderWithStore = (): RenderResult => render(
-    <Provider store={store}>
-        <TestedComponent someProp={someStuff} />
-    </Provider>
-)
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,    // what the thunk returns (by default void)
+  RootState,     // type of the full store, derived above
+  unknown,       // extra argument, we don't need that
+  Action<string> // type of a Redux action (string is the type)
+>;
 ```
 
-## *BONUS ASSIGNMENT*
+You can than import this type, and define a *thunk* function like this:
 
-Add an indicator that shows the quality of temperature and humidity.
-
-This should be represented by a smiley face and an appropriate label, as shown below.
-
-### Humidity
-
-| Range                       | Representation
-|-----------------------------|----------------
-| humidity ≤ 40%              | 😟 *dry*
-| 40% < humidity < 60%        | 😀 *normal*
-| humidity ≥ 60%              | 😟 *moist*
-
-### Temperature
-
-| Range                       | Representation
-|-----------------------------|----------------
-| temperature ≤ 17° C         | 😟 *cold*
-| 17° C < temperature < 25° C | 😀 *normal*
-| temperature ≥ 25° C         | 😟 *hot*
+```typescript
+export function createSomeCoolThunk(): AppThunk { /* … */ }
+```

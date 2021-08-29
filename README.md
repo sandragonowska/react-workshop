@@ -53,5 +53,4 @@ Use `<Ctrl>+<c>` to stop the watch mode.
 2. [Render Dynamic Data](assignment-2.md)
 3. [Testing React Apps](assignment-3.md)
 4. [Application State with Redux](assignment-4.md)
-5. [Redux Toolkit](assignment-5.md)
-6. [Side Effects with Redux Thunk](assignment-6.md)
+5. [Side Effects with Redux Thunk](assignment-5.md)
