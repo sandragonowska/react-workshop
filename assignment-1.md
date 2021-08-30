@@ -23,5 +23,6 @@ with a component tree like this:
 
 If you have some time left, feel free to either:
 
-* Add a footer as well
+* Add a footer as well (also think of some props to pass in, e.g. a *copyright
+  year* and a *company name*)
 * Add some styling (you can put CSS rules into `index.css`)

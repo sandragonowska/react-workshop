@@ -69,12 +69,12 @@ export class Sensor extends Emittery.Typed<{ [EVENT_NAME_TEMP]: number, [EVENT_N
 
   _getAsync<T>(handler: Function): Promise<T> {
     return new Promise((resolve, reject) => {
-      if (Math.random() < 0.1) {
+      if (Math.random() < 0.2) {
         return this._delay(() => reject(new Error('sensor error')));
       }
 
       const value = handler();
-      this._delay(() => resolve(value), 1000, 3000);
+      this._delay(() => resolve(value), 100, 2000);
     });
   }
 
