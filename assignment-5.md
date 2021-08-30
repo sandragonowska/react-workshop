@@ -37,7 +37,7 @@ Use
 
 It will be necessary to upgrade your application state together with some new
 actions/reducers/selectors. Remember that a *thunk* usually dispatches various
-actions. To do that, use the `(dispatch)` parameter of the *thunk* function.
+actions. To do that, use the `dispatch` parameter of the *thunk* function.
 
 It may be confusing that the regular sensor events still update the values in
 the app. Feel free to comment out the event handlers (`sensor.on(…)`).
